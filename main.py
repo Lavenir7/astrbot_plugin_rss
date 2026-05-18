@@ -21,7 +21,7 @@ from astrbot.api.star import Context, Star, register
 from astrbot.core.utils.astrbot_path import get_astrbot_data_path
 
 PLUGIN_NAME = "astrbot_plugin_rss"
-PLUGIN_VERSION = "0.1.3"
+PLUGIN_VERSION = "0.1.2"
 DATA_FILE = "rss_data.json"
 
 LIST_TEMPLATE = """
@@ -286,7 +286,7 @@ class AstrBotPluginRSS(Star):
             _ensure_ids(sess["rsshub"])
             _ensure_ids(sess["crons"])
             for cron in sess["crons"]:
-                # v0.1.2 可能只有 source_index，尽力转成 source_id。
+                # v0.1.1 可能只有 source_index，尽力转成 source_id。
                 if "source_scope" not in cron:
                     cron["source_scope"] = "session"
                 if "source_id" not in cron and "source_index" in cron:
@@ -397,7 +397,7 @@ class AstrBotPluginRSS(Star):
         return item
 
     async def _fetch_feed(self, url: str) -> Any:
-        headers = {"User-Agent": str(self._cfg("user_agent", "AstrBotRSS/0.1.3"))}
+        headers = {"User-Agent": str(self._cfg("user_agent", "AstrBotRSS/0.1.2"))}
         timeout = float(self._cfg("request_timeout_seconds", 15))
         max_bytes = int(self._cfg("max_response_bytes", 2 * 1024 * 1024))
         async with httpx.AsyncClient(follow_redirects=True, timeout=timeout, headers=headers) as client:

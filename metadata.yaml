@@ -1,7 +1,7 @@
 name: astrbot_plugin_rss
 display_name: RSS
 help: 输入 /rss help 或 /rsshub help 查看指令。
-version: 0.1.3
+version: 0.1.2
 author: L'avenir
 repo: "https://github.com/Lavenir7/astrbot_plugin_rss"
 desc: RSS 订阅插件。

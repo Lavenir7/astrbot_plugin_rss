@@ -87,6 +87,6 @@
   "user_agent": {
     "description": "请求 RSS 时使用的 User-Agent",
     "type": "string",
-    "default": "AstrBotRSS/0.1.3"
+    "default": "AstrBotRSS/0.1.2"
   }
 }
