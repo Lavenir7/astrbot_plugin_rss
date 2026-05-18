@@ -1,5 +1,4 @@
 __pycache__/
 *.pyc
-rss_data.json
 *.tmp
 .DS_Store

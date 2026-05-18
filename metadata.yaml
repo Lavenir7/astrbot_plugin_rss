@@ -1,11 +1,11 @@
 name: astrbot_plugin_rss
 desc: AstrBot RSS 订阅插件。
 help: 输入 /rss help 或 /rsshub help 查看指令。
-version: v0.1.0
+version: v0.1.1
 author: L'avenir
 repo: "https://github.com/Lavenir7/astrbot_plugin_rss"
 display_name: RSS/RSSHub 管理器
-short_desc: 管理 RSS 与 RSSHub 源，并将订阅列表渲染成图片。
+short_desc: AstrBot RSS 订阅插件
 astrbot_version: ">=4.16"
 support_platforms:
   - aiocqhttp

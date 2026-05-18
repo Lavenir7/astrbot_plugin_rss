@@ -6,7 +6,7 @@
     "hint": "关闭后可添加暂时无法访问、需要内网访问或临时异常的源。"
   },
   "allow_duplicate": {
-    "description": "允许重复添加相同 URL",
+    "description": "允许在同一会话内重复添加相同 URL",
     "type": "bool",
     "default": false
   },
@@ -26,6 +26,18 @@
     "type": "int",
     "default": 2000000,
     "hint": "防止异常源返回过大的内容。默认约 2MB。"
+  },
+  "max_get_entries": {
+    "description": "/rss get 最大展示条数",
+    "type": "int",
+    "default": 5,
+    "hint": "当 RSS 源条数超过此值时，只展示前 N 条，并在最后发送提醒消息。"
+  },
+  "max_push_entries": {
+    "description": "定时轮询每次最多主动推送的新条目数",
+    "type": "int",
+    "default": 5,
+    "hint": "避免长时间未轮询后一次性刷屏。"
   },
   "user_agent": {
     "description": "请求 RSS 源时使用的 User-Agent",
