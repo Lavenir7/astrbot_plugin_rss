@@ -1,0 +1,35 @@
+{
+  "validate_on_add": {
+    "description": "添加 RSS 源时立即请求并解析源，避免保存无效地址",
+    "type": "bool",
+    "default": true,
+    "hint": "关闭后可添加暂时无法访问、需要内网访问或临时异常的源。"
+  },
+  "allow_duplicate": {
+    "description": "允许重复添加相同 URL",
+    "type": "bool",
+    "default": false
+  },
+  "allow_local_urls": {
+    "description": "允许 localhost、内网 IP、保留 IP 等本地地址",
+    "type": "bool",
+    "default": false,
+    "hint": "只有在你信任使用者且 RSS/RSSHub 部署在内网时再启用。"
+  },
+  "request_timeout": {
+    "description": "请求 RSS 源超时时间（秒）",
+    "type": "float",
+    "default": 15.0
+  },
+  "max_feed_bytes": {
+    "description": "单个 RSS 响应最大读取字节数",
+    "type": "int",
+    "default": 2000000,
+    "hint": "防止异常源返回过大的内容。默认约 2MB。"
+  },
+  "user_agent": {
+    "description": "请求 RSS 源时使用的 User-Agent",
+    "type": "string",
+    "default": "AstrBot-RSS-Plugin/1.0"
+  }
+}
