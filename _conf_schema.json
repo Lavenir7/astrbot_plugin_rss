@@ -1,47 +1,92 @@
 {
-  "validate_on_add": {
-    "description": "添加 RSS 源时立即请求并解析源，避免保存无效地址",
-    "type": "bool",
-    "default": true,
-    "hint": "关闭后可添加暂时无法访问、需要内网访问或临时异常的源。"
-  },
-  "allow_duplicate": {
-    "description": "允许在同一会话内重复添加相同 URL",
-    "type": "bool",
-    "default": false
-  },
-  "allow_local_urls": {
-    "description": "允许 localhost、内网 IP、保留 IP 等本地地址",
-    "type": "bool",
-    "default": false,
-    "hint": "只有在你信任使用者且 RSS/RSSHub 部署在内网时再启用。"
-  },
-  "request_timeout": {
-    "description": "请求 RSS 源超时时间（秒）",
-    "type": "float",
-    "default": 15.0
-  },
-  "max_feed_bytes": {
-    "description": "单个 RSS 响应最大读取字节数",
-    "type": "int",
-    "default": 2000000,
-    "hint": "防止异常源返回过大的内容。默认约 2MB。"
-  },
   "max_get_entries": {
-    "description": "/rss get 最大展示条数",
+    "description": "/rss get 最大展示条目数",
     "type": "int",
     "default": 5,
-    "hint": "当 RSS 源条数超过此值时，只展示前 N 条，并在最后发送提醒消息。"
+    "hint": "RSS 源条目很多时，只展示前 N 条，并在末尾提醒还有多少条未展示。"
+  },
+  "preview_write_mode": {
+    "description": "速览编写方式",
+    "type": "string",
+    "default": "truncate",
+    "options": [
+      "truncate",
+      "ai"
+    ],
+    "hint": "truncate：截取 RSS 描述内容；ai：调用大模型为每条内容生成速览。"
+  },
+  "preview_truncate_chars": {
+    "description": "截取速览字数",
+    "type": "int",
+    "default": 50,
+    "hint": "当速览编写方式为 truncate 时，截取 description/summary/content 纯文本的前 N 字。"
+  },
+  "ai_summary_level": {
+    "description": "AI 总结文字量",
+    "type": "string",
+    "default": "medium",
+    "options": [
+      "short",
+      "medium",
+      "long"
+    ],
+    "hint": "short：约 35 字；medium：约 80 字；long：约 150 字。"
+  },
+  "ai_provider_mode": {
+    "description": "AI 模型选择方式",
+    "type": "string",
+    "default": "current",
+    "options": [
+      "current",
+      "specified"
+    ],
+    "hint": "current：使用当前会话使用的 AI 模型；specified：使用下方指定的模型 Provider ID。"
+  },
+  "ai_provider_id": {
+    "description": "指定 AI 模型 Provider ID",
+    "type": "string",
+    "default": "",
+    "_special": "select_provider",
+    "hint": "仅当 AI 模型选择方式为 specified 时生效。留空会回退到截取模式。"
   },
   "max_push_entries": {
-    "description": "定时轮询每次最多主动推送的新条目数",
+    "description": "定时推送每次最多推送条目数",
     "type": "int",
     "default": 5,
-    "hint": "避免长时间未轮询后一次性刷屏。"
+    "hint": "避免一次检测到大量新内容时刷屏。"
+  },
+  "cron_check_interval_seconds": {
+    "description": "Cron 后台检查间隔（秒）",
+    "type": "int",
+    "default": 20,
+    "hint": "插件内部检查 cron 是否到期的间隔；建议不要小于 5 秒。"
+  },
+  "allow_duplicate_url": {
+    "description": "允许重复 URL",
+    "type": "bool",
+    "default": false,
+    "hint": "关闭时，同一会话的 RSS/RSSHub 与全局源之间不允许重复添加相同 URL；全局源内部也不允许重复。"
+  },
+  "allow_private_address": {
+    "description": "允许添加内网/本机地址",
+    "type": "bool",
+    "default": false,
+    "hint": "默认禁止直接添加 127.0.0.1、私有 IP、链路本地地址等。"
+  },
+  "request_timeout_seconds": {
+    "description": "RSS 请求超时（秒）",
+    "type": "float",
+    "default": 15
+  },
+  "max_response_bytes": {
+    "description": "RSS 响应体最大字节数",
+    "type": "int",
+    "default": 2097152,
+    "hint": "默认 2MB，防止异常源返回过大内容。"
   },
   "user_agent": {
-    "description": "请求 RSS 源时使用的 User-Agent",
+    "description": "请求 RSS 时使用的 User-Agent",
     "type": "string",
-    "default": "AstrBot-RSS-Plugin/1.0"
+    "default": "AstrBotRSS/0.1.3"
   }
 }
